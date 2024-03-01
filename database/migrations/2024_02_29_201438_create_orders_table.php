@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('request_follower_count');
-            $table->integer('have_followed');
+            $table->integer('have_followed')->default(0);
             $table->timestamps();
         });
     }
