@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('user_name');
-            $table->string('token');
-            $table->integer('coin');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('request_follower_count');
+            $table->integer('have_followed');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('orders');
     }
 };
